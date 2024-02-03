@@ -26,4 +26,4 @@ Start ```ht.py``` on RPI5 with ```sudo```:
 
 ```sudo python ht.py```
 
-you can see the output by executing ```recv.py``` on the machine with address ```output_ip, output_port``` set during the configuration.
+you can see the output by executing ```recv.py``` on the machine with address ```output_ip, output_port``` set during the configuration, this will continuosly rewrite an image called ```feed.jpg```.

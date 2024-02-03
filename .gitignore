@@ -1,0 +1,5 @@
+__pycache__/
+servoMotorHandler/__pycache__/
+servoMotorHandler/pwm.py
+streamer/__pycache__/
+feed.jpg
