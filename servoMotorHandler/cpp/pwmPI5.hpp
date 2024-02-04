@@ -56,6 +56,7 @@ class pwmPI5 {
         uint8_t pin_ctrl = GPIO12_CTRL;
         uint8_t pin_pad_ctrl = GPIO12_PAD_CTRL;
         uint8_t channel = 0;
+        uint8_t chan_en = 0;
 
         uint32_t* base_virtual_addr = nullptr;
         uint32_t* io_block = nullptr;

@@ -18,31 +18,37 @@ pwmPI5::pwmPI5(uint8_t pin) {
             this->pin_pad_ctrl = GPIO12_PAD_CTRL;
             this->pin_ctrl = GPIO12_CTRL;
             this->channel = CHAN0_CTRL;
+            this->chan_en = 0;
             break;
         case 13:
             this->pin_pad_ctrl = GPIO13_PAD_CTRL;
             this->pin_ctrl = GPIO13_CTRL;
             this->channel = CHAN1_CTRL;
+            this->chan_en = 1;
             break;
         case 14:
             this->pin_pad_ctrl = GPIO14_PAD_CTRL;
             this->pin_ctrl = GPIO14_CTRL;
             this->channel = CHAN2_CTRL;
+            this->chan_en = 2;
             break;
         case 15:
             this->pin_pad_ctrl = GPIO15_PAD_CTRL;
             this->pin_ctrl = GPIO15_CTRL;
             this->channel = CHAN3_CTRL;
+            this->chan_en = 3;
             break;
         case 18:
             this->pin_pad_ctrl = GPIO18_PAD_CTRL;
             this->pin_ctrl = GPIO18_CTRL;
             this->channel = CHAN2_CTRL;
+            this->chan_en = 2;
             break;
         case 19:
             this->pin_pad_ctrl = GPIO19_PAD_CTRL;
             this->pin_ctrl = GPIO19_CTRL;
             this->channel = CHAN3_CTRL;
+            this->chan_en = 3;
             break;
         default:
             std::cout<<"Invalid pin choice"<<std::endl;
@@ -176,7 +182,7 @@ bool pwmPI5::setDutyCycle(uint16_t duty_cycle_ms) {
 
         //then set PWM0.GLOBAL_CTRL.CHAX_EN to 1
         auto temp = this->pwm[0];
-        temp |= 0x80000001;     //enable and set_update
+        temp |= 0x80000000 | (1 << this->chan_en);     //enable and set_update
         this->pwm[0] = temp;
         return true;
     }
