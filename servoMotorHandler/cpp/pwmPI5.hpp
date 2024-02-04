@@ -11,19 +11,19 @@
 #define CLK_SYS                 0x018000/4
 
 //PINS offsets
-#define GPIO12_STATUS           0x000060/4
 #define GPIO12_CTRL             0x000064/4
-#define GPIO13_STATUS           0x000068/4
+#define GPIO12_PAD_CTRL         0x000034/4
 #define GPIO13_CTRL             0x00006C/4
-#define GPIO14_STATUS           0x000070/4
+#define GPIO13_PAD_CTRL         0x000038/4
 #define GPIO14_CTRL             0x000074/4
-#define GPIO15_STATUS           0x000078/4
+#define GPIO14_PAD_CTRL         0x00003C/4
 #define GPIO15_CTRL             0x00007C/4
+#define GPIO15_PAD_CTRL         0x000040/4
     
-#define GPIO18_STATUS           0x000090/4
 #define GPIO18_CTRL             0x000094/4
-#define GPIO19_STATUS           0x000098/4
+#define GPIO18_PAD_CTRL         0x00004C/4
 #define GPIO19_CTRL             0x00009C/4
+#define GPIO19_PAD_CTRL         0x000050/4
 
 
 //PWM PROPERTIES offsets
@@ -39,6 +39,7 @@
 #define CHAN3_CTRL                  0x44/4
 
 #define CHAN_RANGE                       1
+#define CHAN_PHASE                       2
 #define CHAN_DUTY                        3
 
 //NO IDEA WHERE THIS COMES FROM
@@ -52,8 +53,8 @@ class pwmPI5 {
         ~pwmPI5();
     private:
 
-        uint8_t pin_status = GPIO12_STATUS;
         uint8_t pin_ctrl = GPIO12_CTRL;
+        uint8_t pin_pad_ctrl = GPIO12_PAD_CTRL;
         uint8_t channel = 0;
 
         uint32_t* base_virtual_addr = nullptr;

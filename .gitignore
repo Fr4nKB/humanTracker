@@ -1,4 +1,5 @@
 __pycache__/
+.vscode
 servoMotorHandler/__pycache__/
 servoMotorHandler/pwm.py
 streamer/__pycache__/

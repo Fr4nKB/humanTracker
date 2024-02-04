@@ -24,6 +24,5 @@ class pwmPI5:
 
 
     def __del__(self):
-        print("s")
         self.lib.pwmPI5_delete(self.obj)
 

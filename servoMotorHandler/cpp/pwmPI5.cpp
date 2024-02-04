@@ -15,32 +15,32 @@ You can find it at https://github.com/danjperron/Pi5PWM_HARDWARE
 pwmPI5::pwmPI5(uint8_t pin) {
     switch(pin) {
         case 12:
-            this->pin_status = GPIO12_STATUS;
+            this->pin_pad_ctrl = GPIO12_PAD_CTRL;
             this->pin_ctrl = GPIO12_CTRL;
             this->channel = CHAN0_CTRL;
             break;
         case 13:
-            this->pin_status = GPIO13_STATUS;
+            this->pin_pad_ctrl = GPIO13_PAD_CTRL;
             this->pin_ctrl = GPIO13_CTRL;
             this->channel = CHAN1_CTRL;
             break;
         case 14:
-            this->pin_status = GPIO14_STATUS;
+            this->pin_pad_ctrl = GPIO14_PAD_CTRL;
             this->pin_ctrl = GPIO14_CTRL;
             this->channel = CHAN2_CTRL;
             break;
         case 15:
-            this->pin_status = GPIO15_STATUS;
+            this->pin_pad_ctrl = GPIO15_PAD_CTRL;
             this->pin_ctrl = GPIO15_CTRL;
             this->channel = CHAN3_CTRL;
             break;
         case 18:
-            this->pin_status = GPIO18_STATUS;
+            this->pin_pad_ctrl = GPIO18_PAD_CTRL;
             this->pin_ctrl = GPIO18_CTRL;
             this->channel = CHAN2_CTRL;
             break;
         case 19:
-            this->pin_status = GPIO19_STATUS;
+            this->pin_pad_ctrl = GPIO19_PAD_CTRL;
             this->pin_ctrl = GPIO19_CTRL;
             this->channel = CHAN3_CTRL;
             break;
@@ -126,10 +126,10 @@ bool pwmPI5::setPIN() {
         Schmitt Trigger = ON
         Slew rate = slow
         */
-        temp = this->io_block_pads[this->pin_status];
+        temp = this->io_block_pads[this->pin_pad_ctrl];
         temp &= 0xFFFFFF00;
         temp |= 0x56;
-        this->io_block[this->pin_status] = temp;
+        this->io_block_pads[this->pin_pad_ctrl] = temp;
 
         //set FIFO_POP_MASK to 1 and MODE to Trailing edge mark space
         this->pwm[this->channel] = 0x81;
@@ -153,10 +153,10 @@ bool pwmPI5::unsetPIN() {
         this->io_block[this->pin_ctrl] = temp;
 
         //reset to default
-        temp = this->io_block_pads[this->pin_status];
+        temp = this->io_block_pads[this->pin_pad_ctrl];
         temp &= 0xFFFFFF00;
         temp |= 0x96;
-        this->io_block_pads[this->pin_status] = temp;
+        this->io_block_pads[this->pin_pad_ctrl] = temp;
         return true;
     }
     catch(const std::exception &exc) {
