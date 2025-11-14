@@ -12,8 +12,6 @@ The software is mostly written in Python, however, a part is in low level C++ si
   - ```sudo pip install picamera2```
   - ```sudo pip install mediapipe```
 
-In case there's some error use the option ```--break-system-packages```.
-
 ## Configuration
 - Use ```./docs/config.json``` to configure the program:
   - ```width``` and ```height```: image resolution
